@@ -1,0 +1,1 @@
+Osipenko S.A.
