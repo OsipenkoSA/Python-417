@@ -1,6 +1,6 @@
-from calendar import month
-from itertools import count
-from operator import index
+# from calendar import month
+# from itertools import count
+# from operator import index
 
 # ============= 01.03.25==========================================
 
@@ -3149,3 +3149,162 @@ from operator import index
 
 # text = "<body>Пример ленивого соответствия регулярных выражений</body>"
 # print(re.findall("<.*?>", text))
+# ================================================================================
+# 26.04.25
+
+import re
+
+# s = "Петр, Ольга и Виталий отлично учатся!"
+# reg = "Петр|Ольга|Виталий|Виктор"  # ровный слэш | - оператор или
+# print(re.findall(reg, s))
+# ======================================================================
+
+# s = "int = 4, float = 4.0f, double = 8.0"
+# reg = r"int\s*=\s*\d[.\w+]*|float\s*=\s*\d[.\w+]*"
+# то же самое, но короче
+# reg = r"(?:int|float)\s*=\s*\d[.\w+]*"
+# print(re.findall(reg, s))
+# =====================================================================
+
+# s = "5 +7*2 - 4"
+# reg = r"\s*([+*-])\s*"
+# print(re.split(reg, s))
+
+# ==================================================================
+# задача
+
+# a = "28-08-2021"
+# pattern = r"(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9][0-9]|20[0-9][0-9])"
+# print(re.findall(pattern, a))
+
+# ========================================================
+
+# s = "Самолет прилетает 10/23/2025. Будем рады вас видеть после 10/24/2025"
+# reg = r"(\d{2})/(\d{2})/(\d{4})"
+# print(re.sub(reg, r"\2.\1.\3", s))  # 2 1 3 - это номер круглой скобки в шаблоне(regexp)
+
+# ======================================================================
+
+# Рекурсия -
+
+
+# def elevator(n):
+#     if n == 0:  # условие остановки рекурсии (базовый случай)
+#         print("Вы в подвале")
+#         return
+#     print("=>", n)
+#     elevator(n-1)  # стек: 5 - 4 - 3 - 2 - 1
+#     print(n, end=" ")
+#
+#
+# n1 = 5
+# elevator(n1)
+
+# ============================================================================
+
+
+# def sum_list(lst):
+#     res = 0
+#     for i in lst:
+#         res += i
+#     return res
+
+
+# def sum_list(lst):
+#     if len(lst) == 1:
+#         return lst[0]
+#     else:
+#         return lst[0] + sum_list(lst[1:])
+#
+#
+# print(sum_list([1, 3, 5, 7, 9]))
+
+# =============================================================================
+# конвертер чисел десятичной в разные системы счисления
+
+
+# def to_str(n, base):
+#     convert = "0123456789ABCDEF"
+#     if n < base:
+#         return convert[n]
+#     else:
+#         return to_str(n // base, base) + convert[n % base]
+#
+#
+# print(to_str(254, 16))
+
+# ===================================================================================
+
+# names = ["Adam", ["Bob", ["Chet", "Cat"], "Bard", "Bert"], "Alex", ["Bea", "Bill"], "Ann"]
+# print(names[0])
+# print(isinstance(names[0], list))  # проверка является ли "Adam" списком (первый параметр: что проверять,
+# второй: на что проверить)
+
+
+# def count_item(item_list):
+#     count = 0
+#     for item in item_list:
+#         if isinstance(item, list):
+#             count += count_item(item)
+#         else:
+#             count += 1
+#     return count
+#
+#
+# print(count_item(names))
+
+# =====================================================================================
+
+# Файлы
+
+# f = open(r"C:\project\Python\text.txt")
+# print(f)
+# print(*f)
+# print(f.name)
+# print(f.mode)
+# print(f.encoding)
+# print(f.closed)
+# f.close()
+# print(f.closed)
+# print(f.read(2))
+# print(f.read())
+# f.close()
+
+# f = open("text1.txt", "w")
+# f.write("This is line1\nThis is line2\nThis is line3\n")
+# f.close()
+
+# f = open("text1.txt", "r")
+# # print(f.read())
+# print(f.readline())
+# f.close()
+
+# f = open("text1.txt", "r")
+# print(f.readlines())
+# f.close()
+
+# f = open("text1.txt", "r")  # r - режим чтения если файла нет выдаст ошибку(r - ставится по умолчанию)
+# for line in f:
+#     print(line)
+# f.close()
+
+# f = open("xyz.txt", "w")  # w - запись(очистит файл и запишет данные) если файла нет он его создаст
+# f.write("Hello\nWorld")
+# f.close()
+
+# f = open("xyz.txt", "a")  # a - до запись(до записывает в конец файла) если файла нет он его создаст
+# f.write("\nNew text")
+# f.close()  # файл нужно закрывать всегда
+
+# lines = ["This is line1", "This is line2", "This is line3"]
+# f = open("xyz.txt", "a")
+# f.write("\nNew text")
+# f.writelines(lines)  # до запись списка
+# f.close()
+
+# f = open("xyz.txt", "w")
+# lst = [str(i) for i in range(10, 100, 10)]
+# print(lst)
+# for ind in lst:
+#     f.write(ind + "\t")
+# f.close()
