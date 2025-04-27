@@ -3152,7 +3152,7 @@
 # ================================================================================
 # 26.04.25
 
-import re
+# import re
 
 # s = "Петр, Ольга и Виталий отлично учатся!"
 # reg = "Петр|Ольга|Виталий|Виктор"  # ровный слэш | - оператор или
@@ -3308,3 +3308,195 @@ import re
 # for ind in lst:
 #     f.write(ind + "\t")
 # f.close()
+
+# =========================================================================================
+# 27.04.25
+
+# f = open("text2.txt", "w")
+# f.write("Замена строки в текстовом файле; \nизменить строку в списке;\nЗаписать в файл;\n")
+# f.close()
+#
+# f = open("text2.txt", "r")
+# read_file = f.readlines()
+# print(read_file)
+# read_file[1] = "Hello World\n"
+# f.close()
+#
+# f = open("text2.txt", "w")
+# f.writelines(read_file)
+# f.close()
+
+# ============================================================================
+
+# f = open("text.txt", "w")
+# f.write("Hello!")
+# f.close()
+#
+# f = open("text.txt", "r")
+# print(f.read(3))
+# print(f.tell())  # возвращает позицию условного курсора в файле
+# print(f.seek(1))  # перемещает условный курсор в заданную позицию
+# print(f.read())
+# print(f.tell())
+# f.close()
+
+# =======================================================================
+
+# f = open("text.txt", "a")
+# print(f.write("I am learning Python"))
+# print(f.seek(3))
+# print(f.write("-new string-"))
+# print(f.tell())
+# f.close()
+
+# =====================================================================
+
+# with open("text.txt", "w+") as f:  # контекстный менеджер сам открывает и закрывает файл
+#     print(f.write("0123456789"))
+
+# ============================================
+
+# lst = [4.5, 2.8, 3.9, 1.0, 0.3, 4.33, 7.777]
+#
+#
+# def get_line(lt):
+#     lt = list(map(str, lt))
+#     print(lt)
+#     return " ".join(lt)
+#
+#
+# with open("res.txt", "w") as f:
+#     f.write(get_line(lst))
+#
+# print("файл создан")
+
+# ==============================================
+
+# with open("res.txt", "r") as f:
+#     num = f.read()
+#
+# print(num)
+# num_list = list(map(float, num.split()))
+# res = 1
+# for i in num_list:
+#     res *= i
+#
+# print(res)
+
+# ===================================================================
+# file_name = "res1.txt"
+#
+# with open(file_name, "w") as f:
+#     f.write("Файл — именованная область данных на носителе информации, используемая как базовый объект взаимодействия"
+#             " с данными в операционных системах.")
+#
+#
+# def longest_words(file):
+#     with open(file, "r") as text:
+#         w = text.read().split()
+#         print(w)
+#         res = max(w, key=len)
+#         lst = [word for word in w if len(word) == res]
+#         if len(lst) == 1:
+#             return lst[0]
+#         return lst
+#
+#
+# print(longest_words(file_name))
+
+# ================================================================================
+
+# text = "Строка №1\nСтрока №2\nСтрока №3\nСтрока №4\nСтрока №5\nСтрока №6\nСтрока №7\nСтрока №8\nСтрока №9\nСтрока №10"
+#
+# with open("one.txt", "w") as f:
+#     f.write(text)
+
+# with open("one.txt", "r") as fr, open("two.txt", "w") as fw:
+#     for line in fr:
+#         line = line.replace("Строка", "Линия -")
+#         fw.write(line)
+# ======================================================================
+# модуль OS и OS.PATH
+
+# import os
+
+# print(os.getcwd())
+# print(os.listdir())
+# print(os.listdir("folder"))
+# os.mkdir("folder1")
+# os.makedirs("nested1/nested2/nested3")
+# os.rmdir("folder")
+# os.remove("xyz.txt")
+# os.rename("two.txt", "two_new.txt")
+# os.rename("two_new.txt", "folder/two_new2.txt")  # перемещение только в существующую папку
+# os.renames("two_new.txt", "folder/two_new2.txt")  # перемещение создает папку
+
+# for root, dirs, files in os.walk("nested1"):
+#     print("Root:", root)
+#     print("\tDirs:", dirs)
+#     print("\tFiles:", files)
+
+# ====================================================================
+
+
+# def remove_empty_dirs(root_tree):
+#     print(f"Удаление пустых директорий в ветви {root_tree}")
+#     print("-" * 50)
+#     for root, dirs, files in os.walk(root_tree):
+#         if not os.listdir(root):
+#             os.rmdir(root)
+#             print(f"Директория {root} удалена")
+#     print("-" * 50)
+#
+#
+# remove_empty_dirs("nested1")
+
+# ===================================================================
+
+# import os.path
+#
+# print(os.path.split(r"folder\folder2\folder3\file.txt"))
+# print(os.path.join("folder", "folder2", "folder3", "file.txt"))
+# print(os.path.isdir(r"folder\folder2\folder3"))
+# print(os.path.isfile(r"folder\folder2\folder3\file.txt"))
+
+# ======================================================================
+
+# dirs = [r"Work\F1", r"Work\F2\F21"]
+# for d in dirs:
+#     os.makedirs(d)
+
+# files = {
+#     "Work": ["w.txt"],
+#     r"Work\F1": ["f11.txt", "f12.txt", "f13.txt"],
+#     r"Work\F2\F21": ["f21.txt", "f212.txt"]
+# }
+#
+# for d, f in files.items():
+#     for file in f:
+#         file_path = os.path.join(d, file)
+#         open(file_path, "w").close()
+#
+# files_with_text = [r"Work\w.txt", r"Work\F1\f12.txt", r"Work\F2\F21\f21.txt", r"Work\F2\F21\f212.txt"]
+#
+# for file in files_with_text:
+#     with open(file, "w") as f:
+#         f.write(f"Какой-то текст в файле {file}")
+#
+#
+# def print_tree(root, topdown):
+#     print(f"Обход {root} {"сверху вниз"if topdown else "снизу вверх"}")
+#     for root, dirs, my_file in os.walk(root, topdown):
+#         print(root)
+#         print(dirs)
+#         print(my_file)
+#     print("-" * 50)
+#
+#
+# print_tree("Work", False)
+# print_tree("Work", True)
+
+# ============================================================================
+
+
+
