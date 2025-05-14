@@ -3497,6 +3497,217 @@
 # print_tree("Work", True)
 
 # ============================================================================
+# 10.05.25
+# import os
+# import time
+#
+# path = r"main.py"
+# kb = os.path.getsize(path)  # размер файла в байтах
+# print(kb // 1024)  # в килобайтах
+# atime = os.path.getatime(path)  # дата последнего доступа к документу
+# ctime = os.path.getctime(path)  # создание файла или время последнего изменения
+# mtime = os.path.getmtime(path)  # время последнего изменения файла
+#
+# print(atime)
+# print(ctime)
+# print(mtime)
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(atime)))  # перевод в нормальное время
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(ctime)))
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(mtime)))
+
+# ====================================================================================================================
+
+# Обьектно ореентированное програмирование
 
 
+# class Point:  # класс
+#     """Класс для предоставления координат точек на плоскости - описание(документирование)"""
+#     x = 1  # свойство класса
+#     y = 2
+#
+#     def set_coords(self, x1, y1):  # self - это ссылка на экземпляр класса
+#         self.x = x1
+#         self.y = y1
+#         print("Метод")
+#         print(self.__dict__)
+#
+#
+# p1 = Point()  # вызов экземпляра класса
+# # p1.x = 100  # перезапись свойства экземпляра класса только для этого экземпляра значения в самом классе не изменятся
+# # print(p1.x, p1.y)  # обращение к свойству класса
+# p1.set_coords(100, 200)
+#
+# p2 = Point()
+# p2.set_coords(111, 222)
+# print(p2.x, p2.y)
+
+# ===========================================================================
+
+
+# class Human:
+#     name = "name"
+#     birthday = "00.00.0000"
+#     phone = "00-00-00"
+#     country = "country"
+#     city = "city"
+#     address = "street, house"
+#
+#     def print_info(self):
+#         print(" Персональные данные ".center(40, "*"))
+#         print(f"Имя: {self.name}")
+#         print(f"Дата рождения: {self.birthday}")
+#         print(f"Номер телефона: {self.phone}")
+#         print(f"Страна: {self.country}")
+#         print(f"Город: {self.city}")
+#         print(f"Адрес: {self.address}")
+#         print("=" * 40)
+#
+#     def input_info(self, first_name, birthday, phone, country, city, address):
+#         self.name = first_name
+#         self.birthday = birthday
+#         self.phone = phone
+#         self.country = country
+#         self.city = city
+#         self.address = address
+#
+#     def set_name(self, name):
+#         self.name = name
+#
+#     def get_name(self):
+#         return self.name
+#
+#
+# h1 = Human()
+# h1.print_info()
+# h1.input_info("Юля", "23.05.1986", "45-46-98", "Россия", "Москва", "Чистопрудный 123")
+# h1.print_info()
+# h1.set_name("Анна")
+# h1.print_info()
+# print(h1.get_name())
+
+# ==============================================================================
+
+
+# class Person:
+#     skill = 10
+#
+#     def __init__(self, name, surname):
+#         self.name = name  # динамические свойства
+#         self.surname = surname
+#         print("Инициализатор")
+#
+#     def __del__(self):
+#         print("Финализатор (деструктор)")
+#
+#     def print_info(self, name, surname):
+#         print("\nДанные сотрудника:", self.name, self.surname)
+#
+#     def add_skill(self, k):
+#         self.skill += k
+#         print("Квалификация сотрудника:", self.skill)
+#
+#
+# p1 = Person("Виктор", "Резник")
+# p1.print_info()
+# p1.add_skill(3)
+# del p1
+#
+# p2 = Person("Анна", "Долгих")
+# p2.print_info()
+# p2.add_skill(2)
+
+# ===========================================================
+
+
+# class Point:
+#     count = 0
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         Point.count += 1
+#
+#
+# p1 = Point(1, 2)
+# p2 = Point(10, 20)
+# p3 = Point(100, 200)
+# print(Point.count)
+
+# print(p1.__dict__)
+# print(p2.__dict__)
+# print(p3.__dict__)
+
+# =========================================================
+
+
+# class Robot:
+#     k = 0
+#
+#     def __init__(self, name):
+#         self.name = name
+#         print("Инициализация робота:", self.name)
+#         Robot.k += 1
+#
+#     def say_hi(self):
+#         print("Приветствую! Меня зовут:", self.name)
+#
+#     def __del__(self):
+#         print(self.name, "выключается")
+#         Robot.k -= 1
+#
+#         if Robot.k == 0:
+#             print(self.name, "был последним")
+#         else:
+#             print("Работающих роботов осталось:", Robot.k)
+#
+#
+# droid1 = Robot("R2-D2")
+# droid1.say_hi()
+# print("Численность роботов:", Robot.k)
+#
+# droid2 = Robot("C-3PO")
+# droid2.say_hi()
+# print("Численность роботов:", Robot.k)
+#
+# print("\nЗдесь роботы могут проделать какую-то работу.\n")
+#
+# print("Роботы закончили свою работу. Давайте их выключим.")
+#
+# del droid1
+# del droid2
+#
+# print("Численность роботов:", Robot.k)
+
+# ==========================================================================
+
+# Модификаторы доступа
+# public - открытые self.x
+# protected - self._x
+# private - закрытое self.__x  за пределами класса доступ не получить
+
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#     def get_coord(self):
+#         return self.__x, self.__y
+#
+#     def __check_value(c):
+#         if isinstance(c, (int, float)):
+#             return True
+#         return False
+#
+#     def set_coord(self, x, y):
+#         if (isinstance(x, int) or isinstance(x, float)) and (isinstance(y, int) or isinstance(y, float)):
+#             self.__x = x
+#             self.__y = y
+#         else:
+#             print("Координаты должны быть числами")
+#
+#
+# p1 = Point(5, 10)
+# p1.set_coord(1, 3)
+# print(p1.get_coord())
 
