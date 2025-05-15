@@ -3708,6 +3708,263 @@
 #
 #
 # p1 = Point(5, 10)
-# p1.set_coord(1, 3)
+# # p1.set_coord(1, 3)
 # print(p1.get_coord())
+
+# ==========================================
+# 15.05.25
+
+# __slots__ - установка допустимых свойств в классе
+
+
+# class Point:
+#     __slots__ = ["__x", "__y"]  # то же: ("__x", "__y"); "__x", "__y"
+#
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#     def get_coord(self):
+#         return self.__x, self.__y
+#
+#     def __check_value(c):
+#         if isinstance(c, (int, float)):
+#             return True
+#         return False
+#
+#     def set_coord(self, x, y):
+#         if (isinstance(x, int) or isinstance(x, float)) and (isinstance(y, int) or isinstance(y, float)):
+#             self.__x = x
+#             self.__y = y
+#         else:
+#             print("Координаты должны быть числами")
+#
+#
+# p1 = Point(5, 10)
+# # p1.set_coord(1, 3)
+# print(p1.get_coord())
+
+# =============================================================
+
+
+# class Point:
+#     def __init__(self, x, y):
+#             self.__x = x
+#             self.__y = y
+#
+#     def __set_x(self, x):
+#         print("Вызов __set_x")
+#         self.__x = x
+#
+#     def __get_x(self):
+#         print("Вызов __get_x")
+#         return self.__x
+#
+#     x = property(__get_x, __set_x)  # декоратор метода (старый подход)
+#
+#
+# p1 = Point(5, 10)
+# print(p1.x)
+# p1.x = 50
+# print(p1.x)
+
+#  ===============================
+# современный подход:
+
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#     @property   # декоратор get должен быть выше setter
+#     def x(self):
+#         print("Вызов __get_x")
+#         return self.__x
+#
+#     @x.setter  # декоратор set
+#     def x(self, x):
+#         print("Вызов __set_x")
+#         self.__x = x
+#
+#     @x.deleter  # декоратор удаления свойства
+#     def x(self):
+#         print("удаление свойства")
+#         del self.__x
+#
+#
+# p1 = Point(5, 10)
+# p1.x = 50
+# del p1.x
+# print(p1.x)
+
+# =====================================================
+# конвертор кг в фунты
+
+
+# class KgToPounds:
+#     def __init__(self, kg):
+#         self.__kg = kg
+#
+#     @property
+#     def kg(self):
+#         return self.__kg
+#
+#     @kg.setter
+#     def kg(self, new_kg):
+#         if isinstance(new_kg, (int, float)):
+#             self.__kg = new_kg
+#         else:
+#             print("килограммы задаются числами")
+#
+#     def to_pound(self):
+#         return self.__kg * 2.205
+#
+#
+# w = KgToPounds(12)
+# print(w.kg, "кг =>", w.to_pound(), "фунтов")
+# w.kg = 41
+# print(w.kg, "кг =>", w.to_pound(), "фунтов")
+
+# ==============================================
+
+
+# class Point:
+#     __count = 0
+#
+#     def __init__(self, x=0, y=0):
+#         self.x = x
+#         self.y = y
+#         Point.__count += 1
+#
+#     @staticmethod  # статический метод
+#     def get_count():
+#         return Point.__count
+#
+#
+# p1 = Point()
+# p2 = Point()
+# p3 = Point()
+# print(Point.get_count())
+
+# ===============================================
+
+
+# def inc(x):
+#     return x + 1
+#
+#
+# def dec(x):
+#     return x - 1
+#
+#
+# print(inc(10), dec(10))
+
+# ==========
+
+# class Change:
+#     @staticmethod
+#     def inc(x):
+#         return x + 1
+#
+#     @staticmethod
+#     def dec(x):
+#         return x - 1
+#
+#     def print_info(self):
+#         print("Печать информации")
+#
+#
+# print(Change.inc(10), Change.dec(10))
+
+# =================================================================
+
+
+# class Numbers:
+#     @staticmethod
+#     def max(a, b, c, d):
+#         mx = a
+#         if b > mx:
+#             mx =b
+#         if c > mx:
+#             mx = c
+#         if d > mx:
+#             mx = d
+#         return mx
+#
+#     @staticmethod
+#     def min(*args):
+#         mn = args[0]
+#         for i in args:
+#             if i < mn:
+#                 mn = i
+#         return mn
+#
+#     @staticmethod
+#     def average(*args):
+#         return sum(args) / len(args)
+#
+#     @staticmethod
+#     def factorial(n):
+#         fact = 1
+#         for i in range(1, n + 1):
+#             fact *= i
+#         return fact
+#
+#
+# print(Numbers.max(3, 4, 7, 9))
+# print(Numbers.min(3, 4, 7, 9))
+# print(Numbers.average(3, 5, 7, 9))
+# print(Numbers.factorial(5))
+
+# ========================================================
+
+
+# class Date:
+#     def __init__(self, day, month, year):
+#         self.day = day
+#         self.month = month
+#         self.year = year
+#
+#     def string_to_db(self):
+#         return f"{self.year}-{self.month}-{self.day}"
+#
+#     @classmethod
+#     def from_string(cls, string_date):
+#         day, month, year = map(int, string_date.split("."))
+#         date = Date(day, month, year)
+#         return date
+#
+#     @staticmethod
+#     def is_date_valid(string_date):
+#         if string_date.count(".") == 2:
+#             day, month, year = map(int, string_date.split("."))
+#             return day <= 31 and month <= 12 and year <= 3999
+#
+#
+# dates = [
+#     "23.10.2025",
+#     "30-12-2025",
+#     "01.01.2025",
+#     "12.31.2025"
+# ]
+#
+# for i in dates:
+#     if Date.is_date_valid(i):
+#         date1 = Date.from_string(i)
+#         print(date1.string_to_db())
+#     else:
+#         print("Неправильная дата или формат строки")
+
+# date1 = Date.from_string("23.10.2025")
+# print(date1.string_to_db())
+
+
+# string_date = "23.10.2025"
+# day, month, year = map(int, string_date.split("."))
+# print(day, month, year)
+# date = Date(day, month, year)
+# print(date.string_to_db())
+
+
 
