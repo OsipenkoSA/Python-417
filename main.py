@@ -4922,16 +4922,200 @@
 #     def get_form(x):
 #         return str(x) if x > 9 else "0" + str(x)
 #
-#     def __add__(self, other):
+#     def __add__(self, other):  # переопределение того как будет работать оператор "+"
 #         if not isinstance(other, Clock):
 #             raise ArithmeticError("Правый операнд должен быть типом данных Clock")
 #         return Clock(self.sec + other.sec)
 #
+#     def __eq__(self, other):  # переопределение того как будет работать "=="
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом данных Clock")
+#         return self.sec == other.sec
 #
+#     def __ne__(self, other):  # переопределение "!="
+#         return not self.__eq__(other)
+#
+#     def __getitem__(self, item):
+#         if not isinstance(item, str):
+#             raise ValueError("Ключ должен быть строкой")
+#
+#         if item == "hour":
+#             return (self.sec // 3600) % 24
+#         if item == "min":
+#             return (self.sec // 60) % 60
+#         if item == "sec":
+#             return self.sec % 60
+#
+#         return "Неверный ключ"
+#
+#     def __setitem__(self, key, value):
+#         if not isinstance(key, str):
+#             raise ValueError("Ключ должен быть строкой")
+#         if not isinstance(value, int):
+#             raise ValueError("Значение должно быть целым числом")
+#
+#         s = self.sec % 60
+#         m = (self.sec // 60) % 60
+#         h = (self.sec // 3600) % 24
+#
+#         if key == "hour":
+#             self.sec = s + 60 * m + value * 3600
+#         if key == "min":
+#             self.sec = s + 60 * value + h * 3600
+#         if key == "sec":
+#             self.sec = value + 60 * m + h * 3600
+#
+#
+# c1 = Clock(80000)
+# print(c1.get_format_time())
+#
+# print(c1["hour"], c1["min"], c1["sec"])
+# c1["hour"] = 14
+# c1["min"] = 20
+# c1["sec"] = 34
+# print(c1.get_format_time())
 # c1 = Clock(100)
 # c2 = Clock(200)
-# c3 = c1 + c2
+# c4 = Clock(300)
+# c3 = c1 + c2 + c4
 # print(c1.get_format_time())
 # print(c2.get_format_time())
+# print(c4.get_format_time())
 # print(c3.get_format_time())
+# if c1 == c2:
+#     print("Время одинаковое")
+# else:
+#     print("Время разное")
+# if c1 != c2:
+#     print("Время разное")
+# else:
+#     print("Время одинаковое")
+
+# ============================================================================================
+
+# 25.05.25
+
+
+# class Student:
+#     def __init__(self, name, *marks):
+#         self.name = name
+#         self.marks = list(marks)  # в marks будет приходить как кортеж поэтому преобразуем в список
+#
+#     def __getitem__(self, item):  # переопределение []
+#         if 0 <= item < len(self.marks):
+#             return self.marks[item]
+#         else:
+#             raise IndexError("Неверный индекс")
+#
+#     def __setitem__(self, key, value):  # для перезаписи нужен __setitem__
+#         if not isinstance(key, int) or key < 0:
+#             raise TypeError("Индекс должен быть целым положительным числом")
+#
+#         if key >= len(self.marks):
+#             off = key + 1 - len(self.marks)  # 10 + 1 - 5 => 6
+#             self.marks.extend([None] * off)  # [5, 5, 3, 4, 5, None, None, None, None, None, None]
+#
+#         self.marks[key] = value  # [5, 5, 3, 4, 5, None, None, None, None, None, 4]
+#
+#     def __delitem__(self, key):
+#         if not isinstance(key, int):
+#             raise TypeError("Индекс должен быть целым числом")
+#
+#         del self.marks[key]
+#
+#
+# s1 = Student("Sergey", 5, 5, 3, 4, 5)
+# print(s1.marks[2])  # то же, что и ниже
+# print(s1[2])  # что б так срабатывало нужен __getitem__
+# s1[2] = 4  # для перезаписи нужен __setitem__
+# s1[10] = 4  # [5, 5, 3, 4, 5, None, None, None, None, None, 4]
+# del s1[2]  # для удаления нужен __delitem__
+#
+# print(s1.marks)
+
+# ===============================================================================
+# from random import choice, randint
+#
+#
+# class Cat:
+#     def __init__(self, name, age, pol):
+#         self.name = name
+#         self.age = age
+#         self.pol = pol
+#
+#     def __str__(self):
+#         if self.pol == "M":
+#             return f"{self.name} is good boy!!!"
+#         elif self.pol == "F":
+#             return f"{self.name} is good girl!!!"
+#         else:
+#             return f"{self.name} is good kitty!!!"
+#
+#     def __repr__(self):
+#         return f"Cat(name='{self.name}', age={self.age}, pol='{self.pol}')"
+#
+#     def __add__(self, other):
+#         if self.pol != other.pol:
+#             return [Cat("not name", 0, choice(["M", "F"])) for _ in range(1, randint(2, 6))]
+#         else:
+#             raise TypeError("Types are not supported!")
+#
+#
+# cat1 = Cat("Tom", 4, "M")
+# cat2 = Cat("Elsa", 5, "F")
+# cat3 = Cat("Murzik", 3, "M")
+# print(cat1)
+# print(cat2)
+# print(cat3)
+# print(cat1 + cat2)
+
+# ==============================================================================================================
+
+# Полиморфизм
+
+
+# class Rectangle:
+#     def __init__(self, w, h):
+#         self.w = w
+#         self.h = h
+#
+#     def perimetr(self):
+#         return 2 *(self.w + self.h)
+#
+#
+# class Square:
+#     def __init__(self, a):
+#         self.a = a
+#
+#     def perimetr(self):
+#         return 4 * self.a
+#
+#
+# class Triangle:
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def perimetr(self):
+#         return self.a + self.b + self.c
+#
+#
+# r1 = Rectangle(1, 2)
+# r2 = Rectangle(3, 4)
+#
+# s1 = Square(10)
+# s2 = Square(20)
+#
+# t1 = Triangle(1, 2, 3)
+# t2 = Triangle(4, 5, 6)
+#
+# shape = [r1, r2, s1, s2, t1, t2]
+#
+# for g in shape:
+#     print(g.perimetr())
+
+
+
+
 
