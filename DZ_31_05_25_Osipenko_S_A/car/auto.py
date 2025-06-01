@@ -9,7 +9,7 @@ class Automobile:
         print(f"{self.brand} {self.model} {self.year} год {self.mileage} км.")
 
 
-# class Electro(Automobile):
+# class ElectroCar(Automobile):
 #     def __init__(self, brand, model, year, mileage, power):
 #         super().__init__(brand, model, year, mileage)
 #         self.power = power

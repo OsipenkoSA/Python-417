@@ -1,7 +1,7 @@
-import tesla_car
+import auto
 
 
-class ElectroCar(tesla_car.Automobile):
+class ElectroCar(auto.Automobile):
     def __init__(self, brand, model, year, mileage, power):
         super().__init__(brand, model, year, mileage)
         self.power = power

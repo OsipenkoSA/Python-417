@@ -1,7 +1,7 @@
 # from calendar import month
 # from itertools import count
 # from operator import index
-
+import json
 # ============= 01.03.25==========================================
 
 # типы данных: int - целочисленное значение
@@ -5526,3 +5526,275 @@ import pickle
 #
 # print(item3.__dict__)
 # print(item1)
+
+# ===============================================================================
+# 01.06.25
+#
+#
+# import json
+#
+# data = {
+#     'name': 'Olga',
+#     'age': 35,
+#     20: None,
+#     True: 1,
+#     'hobbies': ('running', 'singing'),
+#     'children': [
+#         {
+#             'firstName': 'Alice',
+#             'age': 6
+#         }
+#     ]
+# }
+
+# with open("data_file.json", "w") as f:
+#     json.dump(data, f, indent=4)
+#
+# with open("data_file.json") as f:
+#     data1 = json.load(f)
+#
+# print(data1)
+
+# json_string = json.dumps(data, ensure_ascii=False)  # ensure_ascii=False - что б не было битой кодировки
+# print(json_string)
+# res = json.loads(json_string)
+# print(res)
+
+# ===============================================================================
+# import json
+# from random import choice
+#
+#
+# def gen_person():
+#     name = ''
+#     tel = ''
+#
+#     letters = ['a', 'b', 'c', 'd', 'f', 'g', 'h', 'e', 'k', 'l', 'm', 'n']
+#     num = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+#
+#     while len(name) != 7:
+#         name += choice(letters)
+#
+#     while len(tel) != 10:
+#         tel += choice(num)
+#
+#     person = {
+#         'name': name,
+#         'tel': tel
+#     }
+#     return person
+#
+#
+# def write_json(person_dict):
+#     try:
+#         data = json.load(open('persons.json'))
+#     except FileNotFoundError:
+#         data = []
+#
+#     data.append(person_dict)
+#     with open('persons.json', 'w') as f:
+#         json.dump(data, f, indent=2)
+#
+#
+# for i in range(5):
+#     write_json(gen_person())
+
+# ======================================================================================
+
+
+# class Student:
+#     def __init__(self, name, marks):
+#         self.name = name
+#         self.marks = marks
+#
+#     def __str__(self):
+#         # st = ''
+#         # for i in self.marks:
+#         #     st += str(i) + ', '
+#         #
+#         # return f"Студент: {self.name}: {st[:-2]}"
+#         # ==== то же самое:
+#         # st = ", ".join(map(str, self.marks))
+#         # return f"Студент: {self.name}: {st}"
+#         # то же самое:
+#         return f"Студент: {self.name}: {", ".join(map(str, self.marks))}"
+#
+#     def add_mark(self, mark):
+#         self.marks.append(mark)
+#
+#     def delete_mark(self, index):
+#         self.marks.pop(index)
+#
+#     def edit_mark(self, index, new_marks):
+#         self.marks[index] = new_marks
+#
+#     def average_marks(self):
+#         return sum(self.marks) / len(self.marks)
+#
+#     def get_file_name(self):
+#         return self.name + ".json"
+#
+#     def dump_to_json(self):
+#         data = {"name": self.name, 'marks': self.marks}
+#         with open(self.get_file_name(), "w") as f:
+#             json.dump(data, f)
+#
+#     def load_from_file(self):
+#         with open(self.get_file_name(), "r") as f:
+#             print(json.load(f))
+#
+#
+# class Group:
+#     def __init__(self, students, group):
+#         self.students = students
+#         self.group = group
+#
+#     def __str__(self):
+#         st = "\n".join(map(str, self.students))
+#         return f"Группа: {self.group}\n{st}"
+#
+#     def add_student(self, student):
+#         self.students.append(student)
+#
+#     def remove_student(self, index):
+#         return self.students.pop(index)
+#
+#     @staticmethod
+#     def change_group(gr1, gr2, index):
+#         st = gr1.remove_student(index)
+#         gr2.add_student(st)
+#
+#     def get_file_name(self):
+#         return self.group.lower().replace(" ", "-") + ".json"
+#
+#     def dump_to_json(self):
+#         data = [{"name": student.name, 'marks': student.marks} for student in self.students]
+#         with open(self.get_file_name(), "w") as f:
+#             json.dump(data, f, indent=2)
+#
+#     def load_from_file(self):
+#         with open(self.get_file_name(), "r") as f:
+#             print(json.load(f))
+#
+#
+# st1 = Student("Bodnya", [5, 4, 3, 4, 5, 3])
+# st2 = Student("Nikolaenko", [2, 3, 5, 4, 2])
+# st3 = Student("Birukov", [3, 5, 3, 2, 5, 4])
+# # print(st1)
+# # print(st2)
+# sts1 = [st1, st2]
+# group1 = Group(sts1, "ГК Python")
+# group1.remove_student(1)
+# # print(group1)
+# print()
+# group1.add_student(st3)
+# print(group1)
+# sts2 = [st2]
+# group2 = Group(sts2, "ГК Web")
+# print(group2)
+# group2.dump_to_json()
+# group2.load_from_file()
+# st1.add_mark(5)
+# st1.delete_mark(2)
+# st1.edit_mark(4, 4)
+# print(st1)
+# print(st1.average_marks())
+# print(st2)
+# print(st2.average_marks())
+# st1.dump_to_json()
+# st1.load_from_file()
+# st2.dump_to_json()
+# st2.load_from_file()
+
+# ==============================================================================
+
+
+# import json
+#
+#
+# class CountryCapital:
+#     @staticmethod
+#     def load(file_name):
+#         try:
+#             data = json.load(open(file_name))
+#         except FileNotFoundError:
+#             data = {}
+#
+#         finally:
+#             return data
+#
+#     @staticmethod
+#     def add_country(file_name):
+#         new_country = input("Введите название страны: ").lower()
+#         new_capital = input("Введите название столицы: ").lower()
+#
+#         data = CountryCapital.load(file_name)
+#
+#         data[new_country] = new_capital
+#
+#         with open(file_name, "w") as f:
+#             json.dump(data, f)
+#
+#     @staticmethod
+#     def load_from_country(file_name):
+#         with open(file_name) as f:
+#             print({k.capitalize(): v.capitalize() for k, v in json.load(f).items()})
+#
+#     @staticmethod
+#     def delete_country(file_name):
+#         del_country = input("Введите название страны: ").lower()
+#
+#         data = CountryCapital.load(file_name)
+#
+#         if del_country in data:
+#             del data[del_country]
+#
+#             with open(file_name, "w") as f:
+#                 json.dump(data, f)
+#         else:
+#             print("Такой страны в базе нет")
+#
+#     @staticmethod
+#     def search_data(file_name):
+#         country = input("Введите название страны: ").lower()
+#
+#         data = CountryCapital.load(file_name)
+#
+#         if country in data:
+#             print(f"Страна {country.capitalize()} столица {data[country].capitalize()} есть в словаре")
+#         else:
+#             print(f"Страна {country.capitalize()} нет в словаре")
+#
+#     @staticmethod
+#     def edit_data(file_name):
+#         country = input("Введите страну для корректировки: ").lower()
+#         new_capital = input("Введите новое название столицы: ").lower()
+#
+#         data = CountryCapital.load(file_name)
+#
+#         if country in data:
+#             data[country] = new_capital
+#             with open(file_name, "w") as f:
+#                 json.dump(data, f)
+#         else:
+#             print("Такой страны в базе нет")
+#
+#
+# file = "list_capital.json"
+# while True:
+#     index = input("Выбор действия:\n1 - добавление данных\n2 - удаление данных\n3 - поиск данных"
+#                   "\n4 - редактирование данных\n5 - просмотр данных\n6 - завершение работы\nВвод: ")
+#     if index == "1":
+#         CountryCapital.add_country(file)
+#     elif index == "2":
+#         CountryCapital.delete_country(file)
+#     elif index == "3":
+#         CountryCapital.search_data(file)
+#     elif index == "4":
+#         CountryCapital.edit_data(file)
+#     elif index == "5":
+#         CountryCapital.load_from_country(file)
+#     elif index == "6":
+#         break
+#     else:
+#         print("Введен некорректный номер")

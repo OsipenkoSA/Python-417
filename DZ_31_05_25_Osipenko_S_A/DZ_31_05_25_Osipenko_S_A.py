@@ -1,4 +1,4 @@
-from car import tesla_car, electro
+from car import electro
 
 
 tesla = electro.ElectroCar("Tesla", "T", 2018, 99000, 100)
