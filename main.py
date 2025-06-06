@@ -1,7 +1,7 @@
 # from calendar import month
 # from itertools import count
 # from operator import index
-import json
+# import json
 # ============= 01.03.25==========================================
 
 # типы данных: int - целочисленное значение
@@ -5458,7 +5458,7 @@ import json
 # метод loads() - считывает данные из строки
 
 
-import pickle
+# import pickle
 
 
 # filename = "basket.txt"
