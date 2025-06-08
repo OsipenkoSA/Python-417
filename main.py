@@ -5972,4 +5972,178 @@
 # row = soup.find_all("div", {"data-set": "salary"})  # в словарь берем тег с тире или пробелом(не допустимый символ в питоне)
 # print(row)
 
+# =========================================================================
+# 08.06.25
+
+
+# from bs4 import BeautifulSoup
+# import re
+
+# f = open("index.html").read()
+# soup = BeautifulSoup(f, "html.parser")
+# row = soup.find("div", class_="name")  # находит первый встретившийся по параметрам
+# row = soup.find("div", class_="name").text  # текстовое содержимое только одного элемента можно
+# row = soup.find_all("div", class_="name")  # находит все по параметрам
+# row = soup.find_all("div", class_="row")[2].find("div", class_="name")  # ПО Индексу и по цепочки
+# row = soup.find_all("div", {"data-set": "salary"})  # в словарь берем тег с тире или пробелом(не допустимый символ в питоне)
+# row = soup.find_all("div", string="Alena")  # доступ по содержимому
+# row = soup.find("div", string="Alena").parent  # к родительскому див
+# row = soup.find("div", string="Alena").parent.parent  # к родительскому родительскому див
+# row = soup.find("div", string="Alena").find_parent(class_="row")  # к родительскому по классу
+# row = soup.find("div", id="whois3")  # по id
+# row = soup.find("div", id="whois3").find_next_sibling()  # по id к следующему по коду
+# row = soup.find("div", id="whois3").find_previous_sibling()  # по id к предыдущему
+
+
+# def get_copywriter(tag):
+#     whois = tag.find("div", class_="whois")
+#     if "Copywriter" in whois:
+#         return tag
+#     return None
+#
+#
+# copywriter = []
+# row = soup.find_all("div", class_="row")
+# for i in row:
+#     cw = get_copywriter(i)
+#     if cw:
+#         copywriter.append(cw)
+# print(copywriter)
+
+
+# def get_salary(s):
+#     pattern = r"\d+"
+#     # res = re.findall(pattern, s)[0]
+#     res = re.search(pattern, s).group()  # то же самое, что и выше
+#     print(res)
+#
+#
+# row = soup.find_all("div", {"data-set": "salary"})
+# for i in row:  # получение всего содержимого без тегов
+#     get_salary(i.text)
+
+# print(row)
+
+# ================================================================
+import requests
+from bs4 import BeautifulSoup
+import re
+import csv
+
+
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml")
+#     p1 = soup.find("h1", class_="wp-block-heading").text
+#     return p1
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org/"
+#     print(get_data(get_html(url)))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+# =====================================================================
+
+
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def refined(s):
+#     return re.sub(r"\D+", "", s)
+#
+#
+# def write_csv(data):
+#     with open("plugins.csv", "a") as f:
+#         writer = csv.writer(f, delimiter=";", lineterminator="\r")
+#         writer.writerow((data['name'], data['url'], data['rating']))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml")
+#     p1 = soup.find_all("section", class_="plugin-section")[2]
+#     plugins = p1.find_all("li")
+#     for plugin in plugins:
+#         name = plugin.find("h3", class_="entry-title").text
+#         url = plugin.find("h3", class_="entry-title").find("a").get("href")
+#         rating = plugin.find("span", class_="rating-count").text
+#         r = refined(rating)
+#
+#         data = {"name": name, "url": url, "rating": r}
+#         write_csv(data)
+#
+#     # return plugins
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org/plugins/"
+#     get_data(get_html(url))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+# ======================================================================
+
+
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def refind_cy(s):
+#     return s.split()[-1]
+#
+#
+# def write_csv(data):
+#     with open("plugins1.csv", "a", encoding="utf-8-sig") as f:
+#         writer = csv.writer(f, delimiter=";", lineterminator="\r")
+#         writer.writerow((data['name'], data['url'], data['snippet'], data['active'], data['tested']))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml")
+#     p1 = soup.find_all("li", class_="wp-block-post")
+#     for el in p1:
+#         name = el.find("h3", class_="entry-title").text
+#         url = el.find("h3", class_="entry-title").find('a').get('href')
+#         snippet = el.find("div", class_="entry-excerpt").text.strip()
+#         active = el.find("span", class_="active-installs").text.strip()
+#         test = el.find("span", class_="tested-with").text.strip()
+#         cy = refind_cy(test)
+#         data = {'name': name, 'url': url, 'snippet': snippet, 'active': active, 'tested': cy}
+#         write_csv(data)
+#
+#
+# def main():
+#     for i in range(3, 23):
+#         url = f"https://ru.wordpress.org/plugins/browse/blocks/page/{i}/"
+#         get_data(get_html(url))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+# =======================================================
+
+# from parser import Parser
+#
+#
+# def main():
+#     pars = Parser("https://www.ixbt.com/live/index/news/", "news.txt")
+#     pars.run()
+#
+#
+# if __name__ == "__main__":
+#     main()
+
 
