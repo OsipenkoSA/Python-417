@@ -6210,7 +6210,7 @@
 # =========================================================================================
 # базы данных
 
-import sqlite3
+# import sqlite3
 
 # con = sqlite3.connect("profile.db")
 # cur = con.cursor()
@@ -6221,15 +6221,15 @@ import sqlite3
 # con.close()
 # ================ то же самое
 
-with sqlite3.connect("profile.db") as con:
-    cur = con.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS users(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    summa REAL,
-    date TEXT
-    )""")
-
-    cur.execute("DROP TABLE users")
+# with sqlite3.connect("profile.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""CREATE TABLE IF NOT EXISTS users(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     name TEXT NOT NULL,
+#     summa REAL,
+#     date TEXT
+#     )""")
+#
+#     cur.execute("DROP TABLE users")
 
 
