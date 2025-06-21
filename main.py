@@ -6232,4 +6232,72 @@
 #
 #     cur.execute("DROP TABLE users")
 
+# ========================================================================
+# 21.06.25
+
+import sqlite3
+
+
+# with sqlite3.connect("users.db") as con:
+#     cur = con.cursor()
+    # cur.execute("""CREATE TABLE IF NOT EXISTS person(
+    # id INTEGER PRIMARY KEY AUTOINCREMENT,
+    # name TEXT NOT NULL,
+    # phone BLOB NOT NULL DEFAULT "+79992134567",
+    # age INTEGER CHECK(age>0 AND age<100),
+    # email TEXT UNIQUE
+    # )""")
+
+# переименование таблицы:
+#     cur.execute("""
+#     ALTER TABLE person
+#     RENAME TO person_table;
+#     """)
+
+# добавить новый столбец:
+#     cur.execute("""
+#     ALTER TABLE person_table
+#     ADD COLUMN address TEXT;
+#     """)
+
+# переименование столбца:
+# cur.execute("""
+#     ALTER TABLE person_table
+#     RENAME COLUMN address TO home_address;
+#     """)
+
+# УДАЛЕНИЕ СТОЛБЦА:
+# cur.execute("""
+#     ALTER TABLE person_table
+#     DROP COLUMN COLUM;
+#     """)
+
+# УДАЛЕНИЕ ТАБЛИЦЫ:
+# cur.execute("""
+#     DROP TABLE person_table;
+#     """)
+
+
+# ======================================
+
+
+# with sqlite3.connect("db_3.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""
+#     SELECT *
+#     FROM T1
+#     LIMIT 2, 5;
+#     """)
+
+# for res in cur:  # вывод данных таблицы через цикл
+#     print(res)
+
+# res2 = cur.fetchall()  # метод вывода данных таблицы в виде списка кортежей
+# print(res2)
+
+# res3 = cur.fetchone()  # метод вывода одной строки из таблицы
+# print(res3)
+
+# res4 = cur.fetchmany(2)  # метод вывода данных из таблицы в скобках число строк которые вывести надо
+# print(res4)
 
