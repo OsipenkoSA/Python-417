@@ -1,0 +1,111 @@
+ID - код по магазину
+Produce - название продукта
+Material – материал
+Color – цвет
+Size – размер
+Country - страна производитель
+ID_salespeople - код поставщика товара
+Price - цена за штуку
+Count - количество штук
+REM - ремарки
+
+
+
+7. Вставьте строку  NTC-117BK Micro Camera Case, нейлон, ч, 13,3x8,3x5,7, 2016, Беларусь, 1046
+
+INSERT INTO Ware
+VALUES (1046, "NTC-117BK", "нейлон", "ч", "13,3x8,3x5,7", "Беларусь", 2016, NULL, NULL, "Micro Camera Case")
+
+8. Вставьте строку POC-463BK	Compact Camera Case, полиэстер, ч, 11x7x4,5, остальные данные не определены.
+
+INSERT INTO Ware
+VALUES (0000, "POC-463BK", "полиэстер", "ч", "11x7x4,5", NULL, NULL, NULL, NULL, "Compact Camera Case")
+
+9. Вывести весь товар, который поставляет продавец с кодом 2065 из России
+
+SELECT *
+FROM Ware
+WHERE ID_salespeople = 2065 AND Country = "Россия"
+
+10. Вывести товар, цена за который находится в диапазоне от 200 до 345
+
+SELECT *
+FROM Ware
+WHERE Price BETWEEN 200 AND 345
+
+11. Определите все сумки из кожи с размером не менее 40х30х5
+
+SELECT *
+FROM Ware
+WHERE REM GLOB "*Case*" AND Size >= "40*"
+
+12. Написать запрос, который выводит все сумки и коды их поставщиков, если товара меньше чем на 1200 руб.
+
+SELECT REM, ID_salespeople 
+FROM Ware
+WHERE REM GLOB "*Case*" AND Price*Count < 1200
+
+13. Написать запрос, который заменит код поставщика на 2000, если на складе хранится товара менее чем на 500 руб. По данному поставщику.
+
+UPDATE Ware
+SET ID_salespeople = 2000
+WHERE Count * Price < 500
+
+14. Вывести все кожаные сумки, количество которых менее 5 шт. и общая сумма товара не превышает 450 руб. 
+
+SELECT *
+FROM Ware
+WHERE Material = "кожа" AND Count < 5 AND Count * Price <= 450
+
+15. Напишите запрос, который выведет все нейлоновые сумки цена на которые не превышает 250 руб.
+
+SELECT *
+FROM Ware
+WHERE Material = "нейлон" AND Price <= 250
+
+16. Замените материал нейлон на брезент, если сумка стоит менее 200 руб.
+
+UPDATE Ware
+SET Material = "брезент"
+WHERE Material = "нейлон" AND Price < 200
+ 
+17. Напишите запрос, который выводит все сумки, у которых есть косметички
+
+SELECT *
+FROM Ware
+WHERE REM GLOB "*косметичка*"
+
+18. Напишите запрос, который покажет все кожаные сумки черного цвета китайского производства.
+
+SELECT *
+FROM Ware
+WHERE Material = "кожа" AND Color = "ч" AND Country = "Китай"
+
+?19. Напишите запрос, который покажет все сумки с размером более 15 дюймов.
+
+SELECT *
+FROM Ware
+WHERE REM GLOB "*(1[5-7]*)*"
+
+
+SELECT *
+FROM Ware
+WHERE REM NOT GLOB "*(1[0-4]*)*"
+
+20. Напишите запрос, который покажет всех поставщиков сумок не черного цвета.
+
+SELECT *
+FROM Ware
+WHERE Color IS NOT "ч"
+
+21. Замените материал полиэстер у сумок китайского производства на нейлон
+
+UPDATE Ware
+SET Material = "нейлон"
+WHERE Material = "полиэстер" AND Country = "Китай"
+
+22. В записях с кодом товара: 1015, 1041, 1032, 1010 материал нейлон заменить на полиэстер если страна-производитель Китай.
+
+UPDATE Ware
+SET Material = "полиэстер"
+WHERE (ID = 1015 OR ID = 1041 OR ID = 1032 OR ID = 1010) AND Material = "нейлон" AND Country = "Китай"
