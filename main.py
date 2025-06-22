@@ -6235,7 +6235,7 @@
 # ========================================================================
 # 21.06.25
 
-import sqlite3
+# import sqlite3
 
 
 # with sqlite3.connect("users.db") as con:
@@ -6301,3 +6301,76 @@ import sqlite3
 # res4 = cur.fetchmany(2)  # метод вывода данных из таблицы в скобках число строк которые вывести надо
 # print(res4)
 
+# ==========================================================================
+# 22.06.25
+
+# import sqlite3
+#
+#
+# # один к одному
+# with sqlite3.connect("person.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""CREATE TABLE IF NOT EXISTS companies(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     name TEXT NOT NULL
+#     )""")
+#
+#     cur.execute("""CREATE TABLE IF NOT EXISTS users(
+#         id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         name TEXT NOT NULL,
+#         age INTEGER,
+#         company_id INTEGER,
+#         FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
+#         )""")
+
+# ====================================================================
+
+# многие к многим
+
+#
+# import sqlite3
+#
+#
+# with sqlite3.connect("book.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""CREATE TABLE IF NOT EXISTS books(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     title TEXT NOT NULL,
+#     count_page INTEGER NOT NULL CHECK(count_page > 0),
+#     price REAL CHECK(price > 0)
+#     )""")
+#
+#     cur.execute("""CREATE TABLE IF NOT EXISTS author(
+#         id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         name TEXT NOT NULL,
+#         age INTEGER CHECK(age > 16)
+#         )""")
+#
+#     cur.execute("""CREATE TABLE IF NOT EXISTS author_books(
+#             id INTEGER PRIMARY KEY AUTOINCREMENT,
+#             books_id INTEGER NOT NULL,
+#             author_id INTEGER NOT NULL,
+#             FOREIGN KEY (books_id) REFERENCES books(id),
+#             FOREIGN KEY (author_id) REFERENCES author(id)
+#             )""")
+
+# ==============================================================
+import sqlite3
+
+
+with sqlite3.connect("education.db") as con:
+    cur = con.cursor()
+    cur.execute("""CREATE TABLE IF NOT EXISTS student(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    surname TEXT NOT NULL,
+    name TEXT NOT NULL,
+    patronymic TEXT NOT NULL,
+    age INTEGER NOT NULL CHECK(age >= 17 AND age <= 50),
+    [group] TEXT NOT NULL,
+    FOREIGN KEY ([group]) REFERENCES groups (id) ON DELETE RESTRICT
+    )""")
+
+    cur.execute("""CREATE TABLE IF NOT EXISTS groups(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        group_name  TEXT NOT NULL   
+    )""")
