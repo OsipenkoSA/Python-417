@@ -5963,7 +5963,7 @@
 
 # from bs4 import BeautifulSoup
 #
-# f = open("index.html").read()
+# f = open("dz.html").read()
 # soup = BeautifulSoup(f, "html.parser")
 # row = soup.find("div", class_="name")  # находит первый встретившийся по параметрам
 # row = soup.find("div", class_="name").text  # текстовое содержимое только одного элемента можно
@@ -5979,7 +5979,7 @@
 # from bs4 import BeautifulSoup
 # import re
 
-# f = open("index.html").read()
+# f = open("dz.html").read()
 # soup = BeautifulSoup(f, "html.parser")
 # row = soup.find("div", class_="name")  # находит первый встретившийся по параметрам
 # row = soup.find("div", class_="name").text  # текстовое содержимое только одного элемента можно
@@ -6240,13 +6240,13 @@
 
 # with sqlite3.connect("users.db") as con:
 #     cur = con.cursor()
-    # cur.execute("""CREATE TABLE IF NOT EXISTS person(
-    # id INTEGER PRIMARY KEY AUTOINCREMENT,
-    # name TEXT NOT NULL,
-    # phone BLOB NOT NULL DEFAULT "+79992134567",
-    # age INTEGER CHECK(age>0 AND age<100),
-    # email TEXT UNIQUE
-    # )""")
+# cur.execute("""CREATE TABLE IF NOT EXISTS person(
+# id INTEGER PRIMARY KEY AUTOINCREMENT,
+# name TEXT NOT NULL,
+# phone BLOB NOT NULL DEFAULT "+79992134567",
+# age INTEGER CHECK(age>0 AND age<100),
+# email TEXT UNIQUE
+# )""")
 
 # переименование таблицы:
 #     cur.execute("""
@@ -6399,24 +6399,24 @@
 #         price INTEGER
 #     )""")
 
-    # cur.execute("INSERT INTO cars VALUES(1, 'Renault', 22000)")
-    # cur.execute("INSERT INTO cars VALUES(2, 'Volvo', 29000)")
-    # cur.execute("INSERT INTO cars VALUES(3, 'Mercedes', 57000)")
-    # cur.execute("INSERT INTO cars VALUES(4, 'Bentley', 35000)")
-    # cur.execute("INSERT INTO cars VALUES(5, 'Audi', 52000)")
+# cur.execute("INSERT INTO cars VALUES(1, 'Renault', 22000)")
+# cur.execute("INSERT INTO cars VALUES(2, 'Volvo', 29000)")
+# cur.execute("INSERT INTO cars VALUES(3, 'Mercedes', 57000)")
+# cur.execute("INSERT INTO cars VALUES(4, 'Bentley', 35000)")
+# cur.execute("INSERT INTO cars VALUES(5, 'Audi', 52000)")
 
-    # for car in car_list:
-    #     cur.execute("INSERT INTO cars VALUES(NULL, ?, ?)", car)
+# for car in car_list:
+#     cur.execute("INSERT INTO cars VALUES(NULL, ?, ?)", car)
 
-    # cur.executemany("INSERT INTO cars VALUES(NULL, ?, ?)", car_list)
+# cur.executemany("INSERT INTO cars VALUES(NULL, ?, ?)", car_list)
 
-    # cur.execute("UPDATE cars SET price = :Price WHERE model LIKE 'B%'", {"Price": 0})
+# cur.execute("UPDATE cars SET price = :Price WHERE model LIKE 'B%'", {"Price": 0})
 
-    # cur.executescript("""
-    # DELETE FROM cars WHERE model LIKE 'B%';
-    # UPDATE cars SET price = price + 100
-    # """)
- # =====================================================================================
+# cur.executescript("""
+# DELETE FROM cars WHERE model LIKE 'B%';
+# UPDATE cars SET price = price + 100
+# """)
+# =====================================================================================
 
 
 # import sqlite3
@@ -6460,20 +6460,20 @@
 #     );
 #     """)
 
-    # cur.execute("INSERT INTO cars VALUES(NULL, 'ZAZ', 1000)")
-    # last_id = cur.lastrowid
-    # buy_id = 2
-    # cur.execute("INSERT INTO cost VALUES('Ilya', ?, ?)", (last_id, buy_id))
+# cur.execute("INSERT INTO cars VALUES(NULL, 'ZAZ', 1000)")
+# last_id = cur.lastrowid
+# buy_id = 2
+# cur.execute("INSERT INTO cost VALUES('Ilya', ?, ?)", (last_id, buy_id))
 
-    # cur.execute("SELECT model, price FROM cars")
-    # for res in cur:
-    #     print(res['model'], res['price'])
+# cur.execute("SELECT model, price FROM cars")
+# for res in cur:
+#     print(res['model'], res['price'])
 
-    # print(cur.fetchall())
+# print(cur.fetchall())
 
-    # print(cur.fetchone())
+# print(cur.fetchone())
 
-    # print(cur.fetchmany(5))
+# print(cur.fetchmany(5))
 
 # ===================================================================
 
@@ -6509,14 +6509,14 @@
 #         score INTEGER
 #     );""")
 
-    # img = read_ava(1)
-    # if img:
-    #     binary = sqlite3.Binary(img)
-    #     cur.execute("INSERT INTO users VALUES('Ilya', ?, 1000)", (binary,))
+# img = read_ava(1)
+# if img:
+#     binary = sqlite3.Binary(img)
+#     cur.execute("INSERT INTO users VALUES('Ilya', ?, 1000)", (binary,))
 
-    # cur.execute("SELECT ava FROM users")
-    # img = cur.fetchone()['ava']
-    # write_ava("out.png", img)
+# cur.execute("SELECT ava FROM users")
+# img = cur.fetchone()['ava']
+# write_ava("out.png", img)
 
 # =====================================================
 
@@ -6539,7 +6539,210 @@
 #         cur.executescript(sql)
 
 # =======================================================================================
+# 05.07.25
+
+# import os
+#
+# from models.database import DATABASE_NAME
+# import create_database as db_creator
+#
+# if __name__ == '__main__':
+#     db_is_creator = os.path.exists(DATABASE_NAME)
+#     if not db_is_creator:
+#         db_creator.create_database()
+
+# =====================================
+# Шаблонизатор
 
 
+# from jinja2 import Template
 
 
+# name = "Игорь"
+# age = 28
+#
+# tm = Template("Меня зовут {{ name.upper() }}. Мне {{ a*2 }} лет")
+# msg = tm.render(name=name, a=age)
+#
+# print(msg)
+
+# ========
+
+# per = {'name': "Игорь", 'age': 28}
+#
+# tm = Template("Меня зовут {{ p.name }}. Мне {{ p.age }} лет")
+# msg = tm.render(p=per)
+#
+# print(msg)
+
+# =========
+
+
+# class Person:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def get_age(self):
+#         return self.age
+#
+#
+# per = Person("Игорь", 28)
+# tm = Template("Меня зовут {{ p.name }}. Мне {{ p.get_age() }} лет")
+# msg = tm.render(p=per)
+#
+# print(msg)
+
+# =============
+
+# cities = [
+#     {'id': 1, 'city': 'Москва'},
+#     {'id': 2, 'city': 'Смоленск'},
+#     {'id': 3, 'city': 'Минск'},
+#     {'id': 4, 'city': 'Сочи'},
+#     {'id': 5, 'city': 'Ярославль'},
+# ]
+#
+# link = """<select>
+#     {% for c in cities %}
+#         {% if c.id > 3 %}
+#             <option values="{{ c['id'] }}">{{ c['city'] }}</option>
+#         {% elif c.city == 'Москва' %}
+#             <option>{{ c['city'] }}</option>
+#         {% else %}
+#             {{ c['city'] }}
+#         {% endif %}
+#     {% endfor %}
+# </select>
+# """
+#
+# tm = Template(link)
+# msg = tm.render(cities=cities)
+#
+# print(msg)
+# ================================================================
+
+# menu = [
+#     {'href': '/index', 'link': 'Главная'},
+#     {'href': '/news', 'link': 'Новости'},
+#     {'href': '/about', 'link': 'О компании'},
+#     {'href': '/shop', 'link': 'Магазин'},
+#     {'href': '/contacts', 'link': 'Контакты'},
+# ]
+#
+# link = """<ul>
+#     {% for i in menu %}
+#         {% if i.link == 'Главная' %}
+#         <li><a href='{{ i['href'] }}' class='active'>{{ i['link'] }}</a></li>
+#         {% else %}
+#         <li><a href='{{ i['href'] }}'>{{ i['link'] }}</a></li>
+#         {% endif %}
+#     {% endfor %}
+# </ul>"""
+#
+# tm = Template(link)
+# msg = tm.render(menu=menu)
+#
+# print(msg)
+
+# ===================================================================
+
+# cars = [
+#     {'model': 'Audi', 'price': 23000},
+#     {'model': 'Skoda', 'price': 17300},
+#     {'model': 'Renault', 'price': 44200},
+#     {'model': 'Wolksvagen', 'price': 31300},
+# ]
+# cars = [4, 5, 6, 7, 8, 9, 10]
+# tpl = "{{ cs | sum(attribute='price') }}"
+# tpl = "{{ cs | sum }}"
+
+# tpl = "{{ (cs | min(attribute='price')).model }}"
+# tpl = "{{ cs | random }}"
+# tpl = "{{ cs | replace('model', 'brand') }}"
+#
+# tm = Template(tpl)
+# msg = tm.render(cs=cars)
+#
+# print(msg)
+#
+# print(cars)
+
+# ================================================================================
+
+# persons = [
+#     {"name": "Алексей", "year": 18, "weight": 78.5},
+#     {"name": "Никита", "year": 28, "weight": 82.3},
+#     {"name": "Виталий", "year": 32, "weight": 94.1},
+# ]
+#
+# tpl = '''
+# {% for u in users %}
+# {% filter upper %}{{ u.name }}{% endfilter %}
+# {% endfor %}
+# '''
+#
+# tm = Template(tpl)
+# msg = tm.render(users=persons)
+#
+# print(msg)
+# ==================================================================
+
+# html = """
+# {% macro fun_input(name, value='', type='text', size=20) %}
+#     <input type="{{ type }}" name="{{ name }}" value="{{ value }}" size={{ size }}>
+# {% endmacro %}
+#
+# <p>{{ fun_input('username', '', 'text', 40) }}</p>
+# <p>{{ fun_input('email', 'Email', 'email') }}</p>
+# <p>{{ fun_input('password', 'Пароль', 'password') }}</p>
+# """
+#
+# tm = Template(html)
+# msg = tm.render()
+#
+# print(msg)
+
+# ===============================================================
+
+# from jinja2 import Environment, FileSystemLoader
+
+# persons = [
+#     {"name": "Алексей", "year": 18, "weight": 78.5},
+#     {"name": "Никита", "year": 28, "weight": 82.3},
+#     {"name": "Виталий", "year": 32, "weight": 94.1},
+# ]
+
+# html = """
+# {% macro list_users(list_of_user) %}
+#     <ul>
+#         {% for u in list_of_user %}
+#             <li>{{ u.name }} {{ caller(u) }}</li>
+#         {% endfor %}
+#     </ul>
+# {% endmacro %}
+#
+# {% call(user) list_users(users) %}
+#     <ul>
+#         <li>age: {{ user.year }}</li>
+#         <li>weight: {{ user.weight }}</li>
+#     </ul>
+# {% endcall %}
+#
+#
+# """
+#
+# tm = Template(html)
+# msg = tm.render(users=persons)
+#
+# print(msg)
+
+# ==================================================================
+
+# file_loader = FileSystemLoader('templates')
+# env = Environment(loader=file_loader)
+#
+# tm = env.get_template('home.html')
+# msg = tm.render(users=persons, title="About Jinja")
+#
+# print(msg)

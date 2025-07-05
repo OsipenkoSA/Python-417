@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% from 'macroreq.html' import dz as dz_input  %}
+<h1>DZ</h1>
+{{ dz_input("text", "firstname", "Имя") }}
+{{ dz_input("text", "lastname", "Фамилия") }}
+{{ dz_input("text", "address", "Адрес") }}
+{{ dz_input("tel", "phone", "Телефон") }}
+{{ dz_input("email", "email", "Почта") }}
+</body>
+</html>

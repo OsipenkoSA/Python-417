@@ -1,0 +1,14 @@
+{% include 'header.html' %}
+
+{% from 'dialog.html' import dialog_1 as dlg %}
+
+  <h1>{{ title }}</h1>
+<ul>
+    {% for u in users %}
+        <li>{{ u.name }}</li>
+    {% endfor %}
+</ul>
+
+{{ dlg("Внимание", "Это текстовый диалог") }}
+
+{% include 'footer.html' %}
