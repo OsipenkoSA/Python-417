@@ -1,0 +1,10 @@
+{% extends 'page.html' %}
+
+<title>{% block title%}О сайте{% endblock %}</title>
+
+{% block content %}
+{{ super() }}
+<h1>{{ self.title() }}</h1>
+<p>Описание сайта</p>
+
+{% endblock %}
