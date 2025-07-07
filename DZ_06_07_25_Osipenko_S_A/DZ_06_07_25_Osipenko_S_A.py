@@ -3,7 +3,7 @@ import os
 from models.database import DATABASE_NAME
 from models.database import Session, create_db
 from faker import Faker
-from models.student import Student
+from models.buyers import Buyers
 
 
 def create_database(load_faker_data=True):
@@ -14,14 +14,15 @@ def create_database(load_faker_data=True):
 
 def _load_faker_data(session):
     faker = Faker('ru_RU')
+    automobile_list = ["Audi", "BMW", "Mercedes", "Volkswagen", "Skoda", "Renault", "Peugeot"]
     session.commit()
 
     for _ in range(50):
         full_name = faker.name().split()
-        age = faker.random.randint(16, 25)
-        ball = faker.random.randint(3, 5)
-        students = Student(full_name, age, ball)
-        session.add(students)
+        avto = faker.random.choice(automobile_list)
+        price = faker.random.randint(15000, 40000)
+        buyers = Buyers(full_name, avto, price)
+        session.add(buyers)
     session.commit()
     session.close()
 

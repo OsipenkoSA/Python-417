@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-DATABASE_NAME = 'students.db'
+DATABASE_NAME = 'buyers.db'
 
 engine = create_engine(f"sqlite:///{DATABASE_NAME}")
 Session = sessionmaker(bind=engine)
