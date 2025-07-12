@@ -1,0 +1,27 @@
+body{
+    background: yellow;
+}
+.menu{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    background: orange;
+    padding: 20px;
+    margin-top: 0;
+}
+.content{
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.flash{
+    padding: 10px;
+}
+.success{
+    border: 1px solid greenyellow;
+    background: lightgreen;
+}
+.error{
+    border: 1px solid red;
+    background: rgb(247, 160, 160);
+}
