@@ -2,15 +2,15 @@ import os
 
 from flask import Flask, render_template, request, flash, g
 import sqlite3
-from fdatabase import FDataBase
+from DZ_12_07_25_Osipenko_S_A.fdatabase import FDataBase
 
-DATABASE = 'flsk.db'
+DATABASE = 'hotel_site.db'
 DEBUG = True
 SECRET_KEY = '5ee79c9338b7d91b165322247f1ba71907f7cb7f'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.config.update(DATABASE=os.path.join(app.root_path, 'flsk.db'))
+app.config.update(DATABASE=os.path.join(app.root_path, 'hotel_site.db'))
 
 
 def connect_db():
@@ -40,11 +40,25 @@ def index():
     return render_template('index.html', menu=dbase.get_menu())
 
 
-@app.route("/add_post", methods=["POST", "GET"])
-def add_post():
+@app.route("/rooms", methods=["POST", "GET"])
+def rooms():
     db = get_db()
     dbase = FDataBase(db)
-    return render_template('room_reservation.html', title="Добавление страницы", menu=dbase.get_menu())
+    return render_template('rooms.html', title="Номера", menu=dbase.get_menu())
+
+
+@app.route("/reserv", methods=["POST", "GET"])
+def reserv():
+    db = get_db()
+    dbase = FDataBase(db)
+    return render_template('room_reservation.html', title="Бронь номеров", menu=dbase.get_menu())
+
+
+@app.route("/contacts", methods=["POST", "GET"])
+def contacts():
+    db = get_db()
+    dbase = FDataBase(db)
+    return render_template('contacts.html', title="Контакты", menu=dbase.get_menu())
 
 
 @app.errorhandler(404)

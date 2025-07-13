@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 {{ super() }}
 
@@ -7,8 +8,14 @@
 <div class="flash {{ cat }}">{{ msg }}</div>
 {% endfor %}
 
-<form action=""></form>
-
+<form action="{{ url_for('add_post') }}" method="post">
+    <p>Название статьи: <input type="text" name="name" required></p>
+    <p>Текст статьи:</p>
+    <p>
+        <textarea name="post" rows="7" cols="40"></textarea>
+    </p>
+    <p><input type="submit" value="Добавить"></p>
+</form>
 
 
 {% endblock %}
