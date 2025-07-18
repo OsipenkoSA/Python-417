@@ -3,13 +3,13 @@ import os
 import sqlite3
 from fdatabase import FDataBase
 
-DATABASE = 'flsk.db'
+DATABASE = 'courses.db'
 DEBUG = True
 SECRET_KEY = '76b50cbbaf879cb4e7d492009e6bb1537f2453e1'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.config.update(DATABASE=os.path.join(app.root_path, 'flsk.db'))
+app.config.update(DATABASE=os.path.join(app.root_path, 'courses.db'))
 
 
 def connect_db():
@@ -36,17 +36,18 @@ def get_db():
 def index():
     db = get_db()
     dbase = FDataBase(db)
-    return render_template('index.html', menu=dbase.get_menu(), posts=dbase.get_posts_annonce())
+    return render_template('index.html', menu=dbase.get_menu(), courses=dbase.get_courses_annonce())
 
 
-@app.route("/add_post", methods=["POST", "GET"])
-def add_post():
+@app.route("/add_courses", methods=["POST", "GET"])
+def add_courses():
     db = get_db()
     dbase = FDataBase(db)
 
     if request.method == "POST":
-        if len(request.form['name']) > 4 and len(request.form['post']) > 10:
-            res = dbase.add_post(request.form['name'], request.form['post'], request.form['url'])
+        if len(request.form['name']) > 4 and len(request.form['courses']) > 10:
+            res = dbase.add_courses(request.form['name'], request.form['price'], request.form['courses'],
+                                    request.form['url'])
             if not res:
                 flash("Ошибка добавления статьи", category="error")
             else:
@@ -54,17 +55,17 @@ def add_post():
         else:
             flash("Ошибка добавления статьи", category="error")
 
-    return render_template('add_post.html', title="Добавление статьи",  menu=dbase.get_menu())
+    return render_template('add_courses.html', title="Добавление курса",  menu=dbase.get_menu())
 
 
-@app.route("/post/<alias>")
-def show_post(alias):
+@app.route("/cours/<alias>")
+def show_courses(alias):
     db = get_db()
     dbase = FDataBase(db)
-    title, post = dbase.get_post(alias)
+    title, price, cours = dbase.get_courses(alias)
     if not title:
         abort(404)
-    return render_template('post.html', menu=dbase.get_menu(), title=title, post=post)
+    return render_template('cours.html', menu=dbase.get_menu(), title=title, price=price, cours=cours)
 
 
 @app.errorhandler(404)

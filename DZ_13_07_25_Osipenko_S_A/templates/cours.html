@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{{ super() }}
+
+<div>{{ cours | safe }}</div>
+<h3>{{price}} руб/месяц</h3>
+
+{% endblock %}

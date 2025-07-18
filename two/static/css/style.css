@@ -15,20 +15,62 @@ body{
 .content{
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
     box-sizing: border-box;
 }
+
 .flash{
     padding: 10px;
 }
 .success{
-    border: 1px solid greenyellow;
-    background: lightgreen;
+    border: 1px solid #21DB56;
+    background: #AEFFC5;
 }
 .error{
-    border: 1px solid red;
-    background: rgb(247, 160, 160);
+    border: 1px solid #FF4343;
+    background: #FF9C9C;
 }
+
 .menu a{
     font-weight: bold;
     color: brown;
 }
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+p > a{
+    text-decoration: none;
+    color: brown;
+}
+li p, li div{
+    border: 1px solid #CCC;    
+}
+
+p.title{
+    margin: 0;
+    font-weight: bold;
+    background: gold;
+}
+
+li div{
+    padding: 10px 20px;
+}
+
+p.title a{
+    display: block;
+    padding: 10px 20px;
+}
+
+p.title:hover{
+    background: orange;
+}
+
+.annonce{
+    margin-top: -1px;
+    margin-bottom: 40px;
+    background: #FFF;
+}
+

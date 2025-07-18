@@ -21,29 +21,25 @@ class FDataBase:
             print("Ошибка чтения из БД")
         return []
 
-    def add_post(self, title, text, url):
+    def add_courses(self, title, price, text, url):
         try:
-            self.__cur.execute("SELECT COUNT() as `count` FROM posts WHERE url LIKE ?", (url,))
+            self.__cur.execute("SELECT COUNT() as `count` FROM courses WHERE url LIKE ?", (url,))
             res = self.__cur.fetchone()
             if res['count'] > 0:
                 print("Статья с таким url уже существует")
                 return False
 
-            base = url_for('static', filename='images')
-            text = re.sub(r"(?P<tag><img\s+[^>]*src=)(?P<quote>[\"'])(?P<url>.+?)(?P=quote)>",
-                          r"\g<tag>" + base + r"/\g<url>>", text)
-
             tm = math.floor(time.time())
-            self.__cur.execute("INSERT INTO posts VALUES(NULL, ?, ?, ?, ?)", (title, text, url, tm))
+            self.__cur.execute("INSERT INTO courses VALUES(NULL, ?, ?, ?, ?, ?)", (title, price, text, url, tm))
             self.__db.commit()
         except sqlite3.Error as e:
             print("Ошибка добавления статьи в БД " + str(e))
             return False
         return True
 
-    def get_post(self, alias):
+    def get_courses(self, alias):
         try:
-            self.__cur.execute(f"SELECT title, text FROM posts WHERE url = '{alias}'")
+            self.__cur.execute(f"SELECT title, price, text FROM courses WHERE url = '{alias}'")
             res = self.__cur.fetchone()
             if res:
                 return res
@@ -52,9 +48,9 @@ class FDataBase:
 
         return False, False
 
-    def get_posts_annonce(self):
+    def get_courses_annonce(self):
         try:
-            self.__cur.execute("SELECT id, title, text, url FROM posts ORDER BY time DESC")
+            self.__cur.execute("SELECT id, title, price, text, url FROM courses ORDER BY time DESC")
             res = self.__cur.fetchall()
             if res:
                 return res

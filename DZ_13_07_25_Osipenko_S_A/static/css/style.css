@@ -1,0 +1,117 @@
+body{
+    background: lightyellow;
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.menu{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    background: rgb(60, 145, 225);
+    padding: 20px;
+    margin-top: 0;
+}
+.content{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.flash{
+    padding: 10px;
+}
+.success{
+    border: 1px solid #21DB56;
+    background: #AEFFC5;
+}
+.error{
+    border: 1px solid #FF4343;
+    background: #FF9C9C;
+}
+
+.menu a{
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+.menu a:hover{
+    color: rgb(91, 88, 88);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+p > a{
+    text-decoration: none;
+    color: rgb(60, 145, 225);
+}
+.courseul{
+   display: flex;
+   align-items: start;
+   justify-content: center;
+}
+.courseannonce{
+    display: inline-block;
+    justify-content: center;
+    position: relative;
+    margin: 20px;
+    width: 300px;
+    height: 500px;
+    border: 1px solid #CCC;
+    background: #FFF;    
+}
+p.title{
+    margin: 0;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    background: rgb(60, 145, 225);
+}
+
+li div{
+    padding: 10px 20px;
+}
+
+p.title a{
+    display: block;
+    padding: 10px 20px;
+}
+
+p.title:hover{
+    background: rgb(19, 67, 111);
+}
+
+.annonce{
+    display: block;
+    height: 250px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    background: #FFF;
+}
+.buybutton{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    height: 30px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 150px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: white;
+    background: rgb(60, 145, 225);
+    border: solid 1px black;
+}
+.buybutton:hover{
+    background: rgb(19, 67, 111);
+}
+.pricing{
+    color: rgb(60, 145, 225);
+    text-align: center;
+    font-size: 50px;
+}
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Курсы</title>
+    {% endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+{% block content %}
+    <ul class="menu">
+        {% for m in menu %}
+        <li>
+            <a href="{{ m.url }}">{{ m.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+<div class="content">
+        {% if title %}
+        <h1>{{ title }}</h1>
+        {% else %}
+        <h1 class="pricing">Pricing</h1>
+        {% endif %}
+{% endblock %}
+</div>
+</body>
+</html>
