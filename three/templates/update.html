@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Постановщик задач
+{% endblock %}
+
+{% block content %}
+<h1 class="center">{{ self.title() }}</h1>
+
+<div class="form">
+        <form action="/update/{{ task.id }}" method="post">
+            <input type="text" name="context" value="{{ task.content }}">
+            <input type="submit" value="Обновить">
+        </form>
+</div>
+{% endblock %}
