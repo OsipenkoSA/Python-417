@@ -1,5 +1,5 @@
 """
-URL configuration for password_generator_project project.
+URL configuration for personal_portfolio project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -16,11 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from generator import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name="home"),
-    path('password/', views.password, name="password"),
-    path('description/', views.description, name="description"),
 ]
