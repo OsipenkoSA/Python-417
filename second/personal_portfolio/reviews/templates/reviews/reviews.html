@@ -1,0 +1,19 @@
+{% extends 'skills/base.html' %}
+
+{% block content %}
+
+<h1>Отзывы</h1>
+
+<h2 class="count">Отзывов: {{ reviews.count }}</h2>
+
+{% for review in reviews %}
+<div class="element">
+    <h2>{{ review.name }}</h2>
+    <div class="blog_text">
+        <h5>{{ review.date|date:'d.m.Y' }}</h5>
+        <p>{{ review.review }}</p>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
