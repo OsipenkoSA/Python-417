@@ -29,3 +29,65 @@ ul{
 a{
     text-decoration: none;
 }
+.btn{
+    background: #003366;
+    color: #FFF;
+    border-radius: 6px;
+    box-shadow: inset 0 0 6px 2px #fff;
+    padding: 10px 40px;
+    margin-top: 40px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.center, h1, h2, h3{
+    text-align: center;
+}
+input, textarea{
+    width: 100%;
+    padding: 6px 10px;
+}
+.top{
+    background: transparent;
+    border: none;
+    color: #FFF;
+    font-size: 20px;
+    cursor: pointer;
+}
+#id_important{
+    width: 20px;
+    height: 20px;
+}
+.content li{
+    box-shadow: 0 2px 8px 2px #003366;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.content a, .completed li{
+    color: #000;
+    display: block;
+    padding: 20px;
+}
+.but{
+    display: flex;
+    align-items: flex-end;
+}
+.good{
+    background: teal;
+}
+.remove{
+    background: orangered;
+}
+a b{
+    color: orangered;
+}
+.completed li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.completed span{
+    font-size: 12px;
+    font-weight: bold;
+    flex-basis: 250px;
+    align-self: end;
+}

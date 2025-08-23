@@ -1,5 +1,5 @@
 """
-URL configuration for todos project.
+URL configuration for devsearch project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -16,21 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from todo import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # Auth
-    path('signup/', views.signup_user, name='signupuser'),
-    path('logout/', views.logout_user, name='logoutuser'),
-    path('login/', views.login_user, name='loginuser'),
-    # Todos
-    path('current/', views.current_todos, name='currenttodos'),
-    path('', views.home, name='home'),
-    path('create/', views.create_todo, name='createtodo'),
-    path('todo/<int:todo_pk>/', views.view_todo, name='viewtodo'),
-    path('todo/<int:todo_pk>/complete', views.complete_todo, name='completetodo'),
-    path('todo/<int:todo_pk>/delete', views.delete_todo, name='deletetodo'),
-    path('completed', views.completed_todos, name='completedtodos'),
 ]
