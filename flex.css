@@ -1,0 +1,11 @@
+.gallery-1 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.gallery-1 img {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+}

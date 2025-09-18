@@ -1,0 +1,22 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 145px);
+  grid-auto-rows: auto;
+  grid-auto-flow: dense;
+  transition: grid-auto-flow 0.3s ease-in-out;
+  gap: 5px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery .w2 {
+  grid-column: span 2 / auto;
+}
+
+.gallery .h2 {
+  grid-row: span 2 / auto;
+}
