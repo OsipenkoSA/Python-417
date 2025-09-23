@@ -12,6 +12,7 @@ body{
     background: #FFF;
     padding: 40px;
     box-sizing: border-box;
+    display: flex;
 }
 ul{
     list-style: none;
@@ -36,4 +37,84 @@ a:hover{
     font-weight: bold;
     justify-content: space-between;
     padding: 20px;
+}
+
+.sidebar ul{
+    width: 320px;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+.sidebar a{
+    padding: 20px;
+    display: block;
+    border: 1px solid #FFF;
+    background: #264b5d;
+    font-weight: bold;
+    font-size: 18px;
+}
+.selected{
+    font-size: 18px;
+    padding: 20px;
+    border: 1px solid #FFF;
+    background: #81d4fa;
+    font-weight: bold;
+}
+.main li{
+    border: 1px solid #264b5d;
+    margin-bottom: 40px;
+}
+.image{
+    max-width: 50%;
+    float: left;
+    margin-right: 20px;
+}
+.first, .date{
+    background: #264b5d;
+    padding: 10px 20px;
+    margin: 0;
+    color: #FFF;
+    font-size: 18px;
+}
+.text{
+    padding: 20px 20px 0;
+}
+.text h2{
+    margin-top: 0;
+}
+.text a{
+    padding-left: 0;
+}
+.text a:hover{
+    color: #264b5d;
+}
+.form-input{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+button{
+    background: #81d4fa;
+    border: 2px solid #264b5d;
+    padding: 10px;
+    width: 100%;
+    font-size: 18px;
+    cursor: pointer;
+}
+.list-pages{
+    display: flex;
+    justify-content: center;
+}
+.page-num-selected{
+    background: #81d4fa;
+    padding: 20px;
+}
+.list-pages a{
+    background: #264b5d;
+    color: #FFF;
+    padding: 20px;
+    display: block;
+}
+.page-num{
+    margin: 6px;
+    font-weight: bold;
 }

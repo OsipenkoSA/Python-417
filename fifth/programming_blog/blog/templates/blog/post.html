@@ -2,6 +2,13 @@
 {% load static %}
 {% block content %}
 
-<h1>{{ post.title }}</h1>
+<div class="post">
+    <h1>{{ post.title }}</h1>
+    {% if post.photo %}
+    <img src="{{ post.photo.url }}" class="image" alt="">
+    {% endif %}
+    {{ post.content|linebreaks }}
+</div>
+
 
 {% endblock %}
