@@ -1,0 +1,19 @@
+id_is_published
+
+id_cat
+
+https://django-simple-captcha.readthedocs.io/en/latest/usage.html
+
+https://docs.djangoproject.com/en/5.2/topics/email/
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+https://django-ckeditor.readthedocs.io/en/latest/
+
+python manage.py collectstatic
+
+path('ckeditor/', include('ckeditor_uploader.urls')),
+
+https://django-ckeditor.readthedocs.io/en/latest/#example-ckeditor-configuration
+
+https://www.pythonanywhere.com/

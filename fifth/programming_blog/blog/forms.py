@@ -4,6 +4,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 
+class ContactForm(forms.Form):
+    name = forms.CharField(label="Имя", max_length=255)
+    email = forms.EmailField(label="Email")
+    content = forms.CharField(label="Сообщение", widget=forms.Textarea(attrs={'rows': 20}))
+
+
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
     email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
