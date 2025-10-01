@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
 
 
 class BlogHome(DataMixin, ListView):
@@ -101,4 +103,20 @@ class ContactFormView(DataMixin, FormView):
 
     def form_valid(self, form):
         print(form.cleaned_data)
+        subject = "Message"
+        body = {
+            'name': form.cleaned_data['name'],
+            'email': form.cleaned_data['email'],
+            'content': form.cleaned_data['content']
+        }
+        message = "\n".join(body.values())
+        try:
+            send_mail(
+                subject,
+                message,
+                form.cleaned_data['email'],
+                ['admin@localhost']
+            )
+        except BadHeaderError:
+            return HttpResponse('Найден некорректный заголовок')
         return redirect('index')
