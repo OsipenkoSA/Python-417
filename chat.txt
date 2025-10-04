@@ -17,3 +17,9 @@ path('ckeditor/', include('ckeditor_uploader.urls')),
 https://django-ckeditor.readthedocs.io/en/latest/#example-ckeditor-configuration
 
 https://www.pythonanywhere.com/
+
+//=======================================================================================//
+
+django-admin startproject landing_page
+
+python manage.py startapp cms
