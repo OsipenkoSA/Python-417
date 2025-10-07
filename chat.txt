@@ -23,3 +23,16 @@ https://www.pythonanywhere.com/
 django-admin startproject landing_page
 
 python manage.py startapp cms
+
+=========================================================================================
+
+https://getbootstrap.com/
+
+python manage.py startapp price
+
+python manage.py startapp crm
+
+form-control
+
+=======================================================================================
+
