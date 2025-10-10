@@ -16,6 +16,7 @@ class OrderAdm(admin.ModelAdmin):
     list_filter = ('order_status',)
     list_editable = ('order_status', 'order_phone')
     inlines = [Comment, ]
+    list_per_page = 10
 
 
 admin.site.register(Order, OrderAdm)
