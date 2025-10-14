@@ -1,0 +1,31 @@
+%section.calendar
+  %h1 August 2015
+  %form{:action => "#"}
+    %label.weekday Mo
+    %label.weekday Tu
+    %label.weekday We
+    %label.weekday Th
+    %label.weekday Fr
+    %label.weekday Sa
+    %label.weekday Su
+   
+    - 36.times do |day|
+      %label.day{:data => {:day => day}, :class => ("invalid" unless day > 4)}
+        %input.appointment{type: "text", required: "true", :date => {day: (day-4)}, placeholder: "What would you like to do?"}
+        %span= day-4
+        %em
+    %div.clearfix
+
+
+<section class="calendar">
+    <h1>augst 2025</h1>
+    <form action="#">
+        <label for="" class="weekday">Mo</label>
+        <label for="" class="weekday">tu</label>
+        <label for="" class="weekday">we</label>
+        <label for="" class="weekday">th</label>
+        <label for="" class="weekday">fr</label>
+        <label for="" class="weekday">sa</label>
+        <label for="" class="weekday">su</label>
+    </form>
+</section>
