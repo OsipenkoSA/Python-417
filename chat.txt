@@ -62,3 +62,11 @@ python manage.py startapp telebot
 django-admin startproject shop
 
 python manage.py startapp products
+
+==================================================================================================================================
+
+python manage.py startapp users
+
+form-control py-4
+
+custom-file-input

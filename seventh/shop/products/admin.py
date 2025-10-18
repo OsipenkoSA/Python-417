@@ -70,10 +70,15 @@ class ProductAdmin(admin.ModelAdmin):
 
             for x in csv_data:
                 fields = x.split(",")
-                ProductCategory.objects.update_or_create(
+                Product.objects.update_or_create(
                     id=fields[0],
                     name=fields[1],
-                    description=[2]
+                    image=fields[2],
+                    description=fields[3],
+                    short_description=fields[4],
+                    price=fields[5],
+                    quantity=fields[6],
+                    category=ProductCategory(fields[7][0])
                 )
             return redirect('admin:index')
 
@@ -84,6 +89,35 @@ class ProductAdmin(admin.ModelAdmin):
 
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('product', 'add_photo')
+
+    def get_urls(self):
+        urls = super().get_urls()
+        new_urls = [path('upload-csv-photo/', self.upload_csv)]
+        return new_urls + urls
+
+    def upload_csv(self, request):
+        if request.method == "POST":
+            csv_file = request.FILES['csv_uploader']
+
+            if not csv_file.name.endswith('.csv'):
+                messages.warning(request, "Ошибочный тип файла")
+                return redirect('.')
+
+            file_data = csv_file.read().decode("utf-8")
+            csv_data = file_data.split("\n")
+
+            for x in csv_data:
+                fields = x.split(",")
+                Photo.objects.update_or_create(
+                    id=fields[0],
+                    product=Product(fields[1]),
+                    add_photo=fields[2][:-1]  # [:-1] - от начала до последнего символа(последний не включается)
+                )
+            return redirect('admin:index')
+
+        form = CsvImportForm()
+        data = {"form": form}
+        return render(request, 'admin/csv_uploader.html', data)
 
 
 admin.site.register(ProductCategory, ProductCategoryAdmin)
