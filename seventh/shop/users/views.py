@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
-from django.contrib import auth
+from django.contrib import auth, messages
 
 
 def login(request):
@@ -12,6 +12,7 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
+                messages.success(request, 'Вы успешно авторизированны')
                 return redirect('index')
     else:
         form = UserLoginForm()
@@ -28,6 +29,7 @@ def register(request):
         form = UserRegistrationForm(data=request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Вы успешно зарегистрировались')
             return redirect('login')
     else:
         form = UserRegistrationForm()
@@ -39,7 +41,14 @@ def register(request):
 
 
 def profile(request):
-    form = UserProfileForm()
+    if request.method == "POST":
+        form = UserProfileForm(data=request.POST, files=request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=request.user)
+
     context = {
         'title': 'Store - профиль',
         'form': form
