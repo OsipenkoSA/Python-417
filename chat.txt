@@ -70,3 +70,13 @@ python manage.py startapp users
 form-control py-4
 
 custom-file-input
+
+=================================================================================================================================
+
+https://docs.djangoproject.com/en/5.2/topics/email/
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+https://support.google.com/a/answer/176600?hl=en
+
+
