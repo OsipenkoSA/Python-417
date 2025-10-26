@@ -79,4 +79,45 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 https://support.google.com/a/answer/176600?hl=en
 
+=========================================================================================================================
 
+https://origin.fontawesome.com/?%3F=
+
+======================================================================================================================================
+
+https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+
+
+\! chcp 1251
+ 
+\!
+ 
+\l
+ 
+CREATE DATABASE store_shop_db;
+ 
+\c store_shop_db
+
+
+
+CREATE ROLE store_user with password "store_shop";
+ 
+ALTER ROLE "store_user_1" WITH LOGIN;
+ 
+GRANT ALL PRIVILEGES ON DATABASE "store_shop_db" to store_user_1;
+ 
+ALTER USER store_user_1 CREATEDB;
+ 
+grant usage on schema public to public;
+
+grant create on schema public to public;
+ 
+pip install psycopg2
+ 
+
+
+python manage.py startapp orders
+
+
+
+ context_processors
